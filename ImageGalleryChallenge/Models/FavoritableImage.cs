@@ -26,8 +26,24 @@ namespace ImageGalleryChallenge.Models
 
             SKBitmap sourceBitmap = SKBitmap.Decode(stream);
 
-            //create an imagesource for the full image
-            Image = ImageSource.FromStream(() => SKImage.FromBitmap(sourceBitmap).Encode(SKEncodedImageFormat.Png, 100).AsStream());
+            //limit max resolution for "full size" images, to impreove performance
+            const int maxDimension = 3000;
+            if(sourceBitmap.Height > maxDimension || sourceBitmap.Width > maxDimension)
+            {
+                //resize image to save loading times in detail view
+                double resizeRatio = ((double) maxDimension / Math.Max(sourceBitmap.Height, sourceBitmap.Width));
+
+                int newHeight = (int)(sourceBitmap.Height * resizeRatio);
+                int newWidth = (int)(sourceBitmap.Width * resizeRatio);
+                SKBitmap resizedBitmap = sourceBitmap.Resize(new SKSizeI(newWidth,newHeight), SKFilterQuality.High);
+
+                //create an imagesource from the reduced image
+                Image = ImageSource.FromStream(() => SKImage.FromBitmap(resizedBitmap).Encode(SKEncodedImageFormat.Png, 100).AsStream());
+            } else
+            {
+                //create an imagesource for the full image
+                Image = ImageSource.FromStream(() => SKImage.FromBitmap(sourceBitmap).Encode(SKEncodedImageFormat.Png, 100).AsStream());
+            }
 
             int cropSideLength = Math.Min(sourceBitmap.Width, sourceBitmap.Height);
 
