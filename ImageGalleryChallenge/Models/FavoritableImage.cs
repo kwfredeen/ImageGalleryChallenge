@@ -3,6 +3,7 @@ using SkiaSharp;
 using System.IO;
 using Xamarin.Forms;
 using System.Reflection;
+using Xamarin.Essentials;
 
 namespace ImageGalleryChallenge.Models
 {
@@ -26,8 +27,8 @@ namespace ImageGalleryChallenge.Models
 
             SKBitmap sourceBitmap = SKBitmap.Decode(stream);
 
-            //limit max resolution for "full size" images, to impreove performance
-            const int maxDimension = 3000;
+            //limit max resolution for "full size" images to fit screen, to improve performance
+            int maxDimension = Math.Min(3000, (int)Math.Min(DeviceDisplay.MainDisplayInfo.Width, DeviceDisplay.MainDisplayInfo.Height));
             if(sourceBitmap.Height > maxDimension || sourceBitmap.Width > maxDimension)
             {
                 //resize image to save loading times in detail view
