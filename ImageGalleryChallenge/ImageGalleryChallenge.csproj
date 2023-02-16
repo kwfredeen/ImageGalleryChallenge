@@ -1,0 +1,69 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
+  </PropertyGroup>
+
+	<PropertyGroup>
+		<LangVersion>preview</LangVersion>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <None Remove="Images\11 year olds tweents.jpg" />
+	  <None Remove="Images\20191229_120351.jpg" />
+	  <None Remove="Images\20200607_172218-2.jpg" />
+	  <None Remove="Images\20200808_195811.jpg" />
+	  <None Remove="Images\20200919_142340.jpg" />
+	  <None Remove="Images\24-36in.jpg" />
+	  <None Remove="Images\cat-2083492__340.jpg" />
+	  <None Remove="Images\Children-Standing-Desks.jpeg" />
+	  <None Remove="Images\depositphotos_2531942-stock-photo-british-short-hair-cat.jpg" />
+	  <None Remove="Images\DSC_0765.jpg" />
+	  <None Remove="Images\fox-1883658__340.jpg" />
+	  <None Remove="Images\good-faces-xmSWVeGEnJw-unsplash.jpg" />
+	  <None Remove="Images\IMG_1218.jpg" />
+	  <None Remove="Images\IMG_7355_Original.jpg" />
+	  <None Remove="Images\IMG_8298.jpg" />
+	  <None Remove="Images\nathan-dumlao-71u2fOofI-U-unsplash.jpg" />
+	  <None Remove="Images\new-stock-photos.jpg" />
+	  <None Remove="Images\pexels-pixabay-47547.jpg" />
+	  <None Remove="Images\PlaylistCareerReadiness.png" />
+	  <None Remove="Images\school outside of Durban.jpg" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <EmbeddedResource Include="Images\11 year olds tweents.jpg" />
+	  <EmbeddedResource Include="Images\20191229_120351.jpg" />
+	  <EmbeddedResource Include="Images\20200607_172218-2.jpg" />
+	  <EmbeddedResource Include="Images\20200808_195811.jpg" />
+	  <EmbeddedResource Include="Images\20200919_142340.jpg" />
+	  <EmbeddedResource Include="Images\24-36in.jpg" />
+	  <EmbeddedResource Include="Images\cat-2083492__340.jpg" />
+	  <EmbeddedResource Include="Images\Children-Standing-Desks.jpeg" />
+	  <EmbeddedResource Include="Images\depositphotos_2531942-stock-photo-british-short-hair-cat.jpg" />
+	  <EmbeddedResource Include="Images\DSC_0765.jpg" />
+	  <EmbeddedResource Include="Images\fox-1883658__340.jpg" />
+	  <EmbeddedResource Include="Images\good-faces-xmSWVeGEnJw-unsplash.jpg" />
+	  <EmbeddedResource Include="Images\IMG_1218.jpg" />
+	  <EmbeddedResource Include="Images\IMG_7355_Original.jpg" />
+	  <EmbeddedResource Include="Images\IMG_8298.jpg" />
+	  <EmbeddedResource Include="Images\nathan-dumlao-71u2fOofI-U-unsplash.jpg" />
+	  <EmbeddedResource Include="Images\new-stock-photos.jpg" />
+	  <EmbeddedResource Include="Images\pexels-pixabay-47547.jpg" />
+	  <EmbeddedResource Include="Images\PlaylistCareerReadiness.png" />
+	  <EmbeddedResource Include="Images\school outside of Durban.jpg" />
+	</ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="SkiaSharp" Version="2.88.3" />
+    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2196" />  
+    <PackageReference Include="Xamarin.Essentials" Version="1.7.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Views\Gallery.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+</Project>

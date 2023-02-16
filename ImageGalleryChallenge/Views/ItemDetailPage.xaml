@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ImageGalleryChallenge.Views.ItemDetailPage"
+             xmlns:local="clr-namespace:ImageGalleryChallenge.ViewModels"
+             x:DataType="local:ItemDetailViewModel"
+             xmlns:model="clr-namespace:ImageGalleryChallenge.Models"
+             Title="{Binding Title}">
+
+    <StackLayout Spacing="20" Padding="15">
+        <CarouselView ItemsSource="{Binding Images}"
+                      CurrentItem="{Binding CurrentImage}">
+            <CarouselView.ItemTemplate>
+                <DataTemplate x:DataType="model:FavoritableImage">
+                    <Image Source="{Binding Image}"/>
+                </DataTemplate>
+            </CarouselView.ItemTemplate>
+        </CarouselView>
+    </StackLayout>
+    
+</ContentPage>

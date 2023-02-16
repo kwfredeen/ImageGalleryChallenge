@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ImageGalleryChallenge.Views.ItemsPage"
+             Title="{Binding Title}"
+             xmlns:local="clr-namespace:ImageGalleryChallenge.ViewModels"  
+             xmlns:model="clr-namespace:ImageGalleryChallenge.Models"  
+             x:Name="BrowseItemsPage"
+             x:DataType="local:ItemsViewModel">
+
+    <!--
+      x:DataType enables compiled bindings for better performance and compile time validation of binding expressions.
+      https://docs.microsoft.com/xamarin/xamarin-forms/app-fundamentals/data-binding/compiled-bindings
+    -->
+    <RefreshView Command="{Binding LoadImagesCommand}" 
+                 IsRefreshing="{Binding IsBusy, Mode=TwoWay}"
+                 Margin="5">
+        <CollectionView x:Name="ItemsListView"
+                ItemsSource="{Binding Images}"
+                SelectionMode="None">
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout Span="{Binding NumberOfColumns}"
+                                 Orientation="Vertical"
+                                 VerticalItemSpacing="5"
+                                 HorizontalItemSpacing="5"/>
+            </CollectionView.ItemsLayout>
+            
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout x:DataType="model:FavoritableImage">
+                        <Image Source="{Binding Thumbnail}"
+                               HorizontalOptions="FillAndExpand"
+                               VerticalOptions="FillAndExpand"
+                               WidthRequest="{Binding Source={RelativeSource AncestorType={x:Type local:ItemsViewModel}}, Path=ColumnWidth}"
+                               HeightRequest="{Binding Source={RelativeSource AncestorType={x:Type local:ItemsViewModel}}, Path=ColumnWidth}"/>
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer 
+                                NumberOfTapsRequired="1"
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type local:ItemsViewModel}}, Path=ImageTapped}"		
+                                CommandParameter="{Binding .}">
+                            </TapGestureRecognizer>
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </RefreshView>
+</ContentPage>

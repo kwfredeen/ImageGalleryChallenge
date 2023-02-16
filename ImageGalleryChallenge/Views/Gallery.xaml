@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ImageGalleryChallenge.Views.Gallery"
+             xmlns:vm="clr-namespace:ImageGalleryChallenge.ViewModels"
+             xmlns:model="clr-namespace:ImageGalleryChallenge.Models"
+             Title="{Binding Title}">
+
+    <ContentPage.BindingContext>
+        <vm:GalleryViewModel/>
+    </ContentPage.BindingContext>
+    
+    <StackLayout Padding="5" HorizontalOptions="Center">
+        <CollectionView ItemsSource="{Binding Images}">
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout Span="3"
+                                 Orientation="Vertical"/>
+            </CollectionView.ItemsLayout>
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="model:FavoritableImage">
+                    <StackLayout Padding="5">
+                        <Image Source="{Binding Thumbnail}"
+                               HeightRequest="200"
+                               WidthRequest="200" />
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </StackLayout>
+</ContentPage>
