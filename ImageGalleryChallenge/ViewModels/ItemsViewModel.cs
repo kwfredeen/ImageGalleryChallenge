@@ -42,7 +42,6 @@ namespace ImageGalleryChallenge.ViewModels
             try
             {
                 //Images.Clear();
-                AllImages.LoadImages(this);
                 Images = AllImages.Images;
 
             }

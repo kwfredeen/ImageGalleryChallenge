@@ -9,7 +9,8 @@
 
     <StackLayout Spacing="20" Padding="15">
         <CarouselView ItemsSource="{Binding Images}"
-                      CurrentItem="{Binding CurrentImage}">
+                      Position="{Binding Position}"
+                      x:Name="ImageScroller">
             <CarouselView.ItemTemplate>
                 <DataTemplate x:DataType="model:FavoritableImage">
                     <Image Source="{Binding Image}"/>

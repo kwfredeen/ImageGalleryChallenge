@@ -6,10 +6,19 @@ namespace ImageGalleryChallenge.Views
 {
     public partial class ItemDetailPage : ContentPage
     {
+        ItemDetailViewModel _vm;
+
         public ItemDetailPage()
         {
             InitializeComponent();
-            BindingContext = new ItemDetailViewModel();
+            BindingContext = _vm = new ItemDetailViewModel();
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            _vm.OnAppearing();
+            ImageScroller.Position = _vm.Position;
         }
     }
 }

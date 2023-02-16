@@ -17,12 +17,12 @@ namespace ImageGalleryChallenge.ViewModels
             Title = "Details";
 
             Images = AllImages.Images;
-            CurrentImage = Images[int.Parse(ImageIndex)];
         }
 
         public List<FavoritableImage> Images { get; set; }
         public string ImageIndex { get; set; } = "0";
         public FavoritableImage CurrentImage { get; set; }
+        public int Position { get; set; }
 
         public async void LoadImages(string itemId)
         {
@@ -34,6 +34,15 @@ namespace ImageGalleryChallenge.ViewModels
             {
                 Debug.WriteLine("Failed to Load Item");
             }
+        }
+
+        public void OnAppearing()
+        {
+            //Position = int.Parse(ImageIndex);
+
+            Position = int.Parse(ImageIndex);
+            
+            //CurrentImage = Images[int.Parse(ImageIndex)];
         }
     }
 }

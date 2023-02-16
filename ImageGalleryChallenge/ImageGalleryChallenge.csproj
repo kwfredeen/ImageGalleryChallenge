@@ -15,7 +15,6 @@
 	  <None Remove="Images\20200607_172218-2.jpg" />
 	  <None Remove="Images\20200808_195811.jpg" />
 	  <None Remove="Images\20200919_142340.jpg" />
-	  <None Remove="Images\24-36in.jpg" />
 	  <None Remove="Images\cat-2083492__340.jpg" />
 	  <None Remove="Images\Children-Standing-Desks.jpeg" />
 	  <None Remove="Images\depositphotos_2531942-stock-photo-british-short-hair-cat.jpg" />
@@ -38,7 +37,6 @@
 	  <EmbeddedResource Include="Images\20200607_172218-2.jpg" />
 	  <EmbeddedResource Include="Images\20200808_195811.jpg" />
 	  <EmbeddedResource Include="Images\20200919_142340.jpg" />
-	  <EmbeddedResource Include="Images\24-36in.jpg" />
 	  <EmbeddedResource Include="Images\cat-2083492__340.jpg" />
 	  <EmbeddedResource Include="Images\Children-Standing-Desks.jpeg" />
 	  <EmbeddedResource Include="Images\depositphotos_2531942-stock-photo-british-short-hair-cat.jpg" />
