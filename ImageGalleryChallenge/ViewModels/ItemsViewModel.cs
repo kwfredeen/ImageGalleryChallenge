@@ -2,10 +2,7 @@
 using ImageGalleryChallenge.Views;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Diagnostics;
-using System.Linq;
-using System.Reflection;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
@@ -18,7 +15,6 @@ namespace ImageGalleryChallenge.ViewModels
 
         public List<FavoritableImage> Images { get; private set; }
         public Command LoadImagesCommand { get; }
-        public Command AddItemCommand { get; }
         public Command<FavoritableImage> ImageTapped { get; }
         public int NumberOfColumns { get; set; } = 3;
         public int ColumnWidth { get; set; } = (int)((DeviceDisplay.MainDisplayInfo.Width / DeviceDisplay.MainDisplayInfo.Density) - 10) / 3;
@@ -31,8 +27,6 @@ namespace ImageGalleryChallenge.ViewModels
             LoadImagesCommand = new Command(async () => await ExecuteLoadImagesCommand());
 
             ImageTapped = new Command<FavoritableImage>(OnImageSelected);
-
-            AddItemCommand = new Command(OnAddItem);
         }
 
         async Task ExecuteLoadImagesCommand()
@@ -41,7 +35,6 @@ namespace ImageGalleryChallenge.ViewModels
 
             try
             {
-                //Images.Clear();
                 Images = AllImages.Images;
 
             }
@@ -69,11 +62,6 @@ namespace ImageGalleryChallenge.ViewModels
                 SetProperty(ref _selectedImage, value);
                 OnImageSelected(value);
             }
-        }
-
-        private async void OnAddItem(object obj)
-        {
-            await Shell.Current.GoToAsync(nameof(NewItemPage));
         }
 
         async void OnImageSelected(FavoritableImage image)

@@ -1,17 +1,12 @@
-﻿using ImageGalleryChallenge.Models;
-using ImageGalleryChallenge.Services;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using Xamarin.Forms;
 
 namespace ImageGalleryChallenge.ViewModels
 {
     public class BaseViewModel : INotifyPropertyChanged
     {
-        public IDataStore<FavoritableImage> DataStore => DependencyService.Get<IDataStore<FavoritableImage>>();
-
         bool isBusy = false;
         public bool IsBusy
         {

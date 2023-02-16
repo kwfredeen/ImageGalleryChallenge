@@ -1,9 +1,4 @@
-﻿using ImageGalleryChallenge.Models;
-using ImageGalleryChallenge.Services;
-using ImageGalleryChallenge.Views;
-using System;
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
+﻿using Xamarin.Forms;
 
 namespace ImageGalleryChallenge
 {
@@ -14,7 +9,6 @@ namespace ImageGalleryChallenge
         {
             InitializeComponent();
 
-            DependencyService.Register<MockDataStore>();
             MainPage = new AppShell();
         }
 
