@@ -26,6 +26,7 @@ namespace ImageGalleryChallenge.Models
                 Assembly assembly = o.GetType().GetTypeInfo().Assembly;
                 foreach (string resourceID in assembly.GetManifestResourceNames())
                 {
+                    if (!resourceID.Contains(".Images.")) continue;
                     FavoritableImage favoritableImage = new(resourceID);
                     favoritableImage.GenerateThumbnail();
                     Images.Add(favoritableImage);

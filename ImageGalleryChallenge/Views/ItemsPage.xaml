@@ -27,20 +27,37 @@
             
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <StackLayout x:DataType="model:FavoritableImage">
-                        <Image Source="{Binding Thumbnail}"
+                    <AbsoluteLayout x:DataType="model:FavoritableImage">
+                        <StackLayout>
+                            <Image Source="{Binding Thumbnail}"
                                HorizontalOptions="FillAndExpand"
                                VerticalOptions="FillAndExpand"
                                WidthRequest="{Binding Source={RelativeSource AncestorType={x:Type local:ItemsViewModel}}, Path=ColumnWidth}"
                                HeightRequest="{Binding Source={RelativeSource AncestorType={x:Type local:ItemsViewModel}}, Path=ColumnWidth}"/>
-                        <StackLayout.GestureRecognizers>
-                            <TapGestureRecognizer 
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer 
                                 NumberOfTapsRequired="1"
                                 Command="{Binding Source={RelativeSource AncestorType={x:Type local:ItemsViewModel}}, Path=ImageTapped}"		
                                 CommandParameter="{Binding .}">
-                            </TapGestureRecognizer>
-                        </StackLayout.GestureRecognizers>
-                    </StackLayout>
+                                </TapGestureRecognizer>
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                        <StackLayout AbsoluteLayout.LayoutBounds="1,1" 
+                                     AbsoluteLayout.LayoutFlags="PositionProportional"
+                                     Padding="3">
+                            <Image>
+                                <Image.Source>
+                                    <FontImageSource FontFamily="FontAwesome"
+                                                     Color="{Binding StarColor, Mode=TwoWay}"
+                                                     Glyph="&#xf005;"/>
+                                </Image.Source>
+                            </Image>
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer NumberOfTapsRequired="1"
+                                                      Command="{Binding FavoriteTapped}"/>
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                    </AbsoluteLayout>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>

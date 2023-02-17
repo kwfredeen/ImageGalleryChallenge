@@ -4,19 +4,48 @@ using System.IO;
 using Xamarin.Forms;
 using System.Reflection;
 using Xamarin.Essentials;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace ImageGalleryChallenge.Models
 {
-    public class FavoritableImage
+    public class FavoritableImage : INotifyPropertyChanged
     {
         private string _imagePath;
         public ImageSource Thumbnail { get; set; }
         public ImageSource Image { get; set; }
-        public bool Favorite { get; set; }
+
+        private bool _favorite;
+        public bool Favorite 
+        { 
+            get => _favorite; 
+            set 
+            {
+                _favorite = value;
+                OnPropertyChanged();
+            } 
+        }
+
+        private Color _starColor;
+        public Color StarColor 
+        { 
+            get => _starColor; 
+            set
+            {
+                _starColor = value;
+                OnPropertyChanged();
+            } 
+        }
+
+        public Command FavoriteTapped { get; }
 
         public FavoritableImage(string imagePath)
         {
             _imagePath = imagePath;
+
+            FavoriteTapped = new(() => OnFavoriteTapped());
+            StarColor = Color.LightGray;
+            Favorite = false;
         }
 
         public async void GenerateThumbnail()
@@ -70,5 +99,24 @@ namespace ImageGalleryChallenge.Models
 
             stream.Dispose();
         }
+
+        private void OnFavoriteTapped()
+        {
+            Favorite = !Favorite;
+
+            StarColor = Favorite ? Color.Yellow : Color.LightGray;
+        }
+
+        #region INotifyPropertyChanged
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected void OnPropertyChanged([CallerMemberName] string propertyName = "")
+        {
+            var changed = PropertyChanged;
+            if (changed == null)
+                return;
+
+            changed.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+        #endregion
     }
 }
