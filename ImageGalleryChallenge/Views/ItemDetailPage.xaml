@@ -13,10 +13,29 @@
                       x:Name="ImageScroller">
             <CarouselView.ItemTemplate>
                 <DataTemplate x:DataType="model:FavoritableImage">
-                    <Image Source="{Binding Image}"/>
+                    <StackLayout>
+                        <Image x:Name="DetailedImage"
+                               Source="{Binding Image}"
+                               Aspect="AspectFit"
+                               HorizontalOptions="FillAndExpand"
+                               VerticalOptions="FillAndExpand"/>
+
+                        <Image x:Name="Star"
+                               HorizontalOptions="Center"
+                               VerticalOptions="Center">
+                            <Image.Source>
+                                <FontImageSource FontFamily="FontAwesome"
+                                                Color="{Binding StarColor, Mode=TwoWay}"
+                                                Glyph="&#xf005;"/>
+                            </Image.Source>
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer NumberOfTapsRequired="1"
+                                                    Command="{Binding FavoriteTapped}"/>
+                            </Image.GestureRecognizers>
+                        </Image>
+                    </StackLayout>
                 </DataTemplate>
             </CarouselView.ItemTemplate>
         </CarouselView>
     </StackLayout>
-    
 </ContentPage>

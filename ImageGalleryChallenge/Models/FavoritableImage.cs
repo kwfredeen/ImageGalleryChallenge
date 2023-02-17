@@ -104,7 +104,7 @@ namespace ImageGalleryChallenge.Models
         {
             Favorite = !Favorite;
 
-            StarColor = Favorite ? Color.Yellow : Color.LightGray;
+            StarColor = Favorite ? Color.Goldenrod : Color.LightGray;
         }
 
         #region INotifyPropertyChanged
