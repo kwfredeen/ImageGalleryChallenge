@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using ImageGalleryChallenge.ViewModels;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
@@ -8,7 +9,11 @@ namespace ImageGalleryChallenge.Models
     {
         public static List<FavoritableImage> Images = new();
 
-        public static async void LoadImages(object o)
+        /// <summary>
+        /// Loads images from embedded resources into Images, and generates renderable sources for each
+        /// </summary>
+        /// <param name="vm">ViewModel this method is called from</param>
+        public static async void LoadImages(BaseViewModel vm)
         {
             Images.Clear();
 
@@ -23,7 +28,7 @@ namespace ImageGalleryChallenge.Models
             else
             {
                 //populate with stock images
-                Assembly assembly = o.GetType().GetTypeInfo().Assembly;
+                Assembly assembly = vm.GetType().GetTypeInfo().Assembly;
                 foreach (string resourceID in assembly.GetManifestResourceNames())
                 {
                     if (!resourceID.Contains(".Images.")) continue;
